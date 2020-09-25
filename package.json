@@ -80,6 +80,18 @@
     ],
     "overrides": [
       {
+        "files": "src/ajv.ts",
+        "rules": {
+          "sonarjs/no-duplicated-branches": 0
+        }
+      },
+      {
+        "files": "test/helper.ts",
+        "rules": {
+          "@typescript-eslint/no-var-requires": 0
+        }
+      },
+      {
         "files": "test/**/*.ts",
         "rules": {
           "sonarjs/no-duplicate-string": 0

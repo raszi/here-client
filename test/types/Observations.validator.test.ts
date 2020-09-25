@@ -1,8 +1,4 @@
-import chai, { expect } from 'chai';
-
-chai.use(require('chai-datetime'));
-
-import { readFixture } from '../helper';
+import { expect, readFixture } from '../helper';
 
 import validate from '../../src/types/Observations.validator';
 

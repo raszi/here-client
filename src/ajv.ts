@@ -4,7 +4,7 @@ import { isArray, isNumber, isRecord, isString } from './utils';
 type ParserFunction = (
   data: unknown,
   dataPath: string,
-  parentData: object | any[],
+  parentData: Record<string, unknown> | unknown[],
   parentKey: string | number
 ) => unknown;
 
@@ -62,10 +62,17 @@ export const addKeyword = (ajv: Ajv): void => {
     modifying: true,
     compile: (schema) => {
       return (data, dataPath, parentData, parentKey) => {
-        if (!isString(dataPath) || !isString(parentKey) || typeof parentData === 'undefined') {
-          console.log('WTF?!');
-          console.log({ dataPath, parentKey });
-          return false;
+        if (!isString(dataPath)) {
+          throw new Error('dataPath is not a string');
+        }
+
+        if (typeof parentKey === 'undefined') {
+          throw new Error('parentKey is undefined');
+        }
+
+        if (!isRecord(parentData) && !isArray(parentData)) {
+          console.log(parentData);
+          throw new Error('parentData is invalid');
         }
 
         const value = Parsers[schema](data, dataPath, parentData, parentKey);

@@ -1,6 +1,4 @@
-import { expect } from 'chai';
-
-import { readFixture } from '../helper';
+import { expect, readFixture } from '../helper';
 
 import validate from '../../src/types/DailyForecasts.validator';
 
