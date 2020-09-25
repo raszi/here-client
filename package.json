@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/raszi/here-client",
   "dependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.2.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
