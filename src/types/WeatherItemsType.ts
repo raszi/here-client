@@ -1,4 +1,8 @@
+import LocationMetadata from './LocationMetadata';
+
 type DayLight = 'D' | 'N';
+
+type NumberOrStar = number | '*';
 
 type IconName =
   | 'sunny'
@@ -152,18 +156,22 @@ type IconName =
   | 'blizzard'
   | 'cw_no_report_icon';
 
-export default interface WeatherItemsType {
+export default interface WeatherItemsType extends Partial<LocationMetadata> {
   /**
    * Number of active alerts.
-   * @pattern ^\d+$
+   *
+   * @type integer
+   * @minimum 0
    */
-  activeAlerts: string;
+  activeAlerts: number;
 
   /**
    * Data age in minutes.
-   * @pattern ^\d+$
+   *
+   * @type integer
+   * @minimum 0
    */
-  ageMinutes: string;
+  ageMinutes: number;
 
   /**
    * Air description.
@@ -172,15 +180,13 @@ export default interface WeatherItemsType {
 
   /**
    * Air description value
-   * @pattern ^(\*|\d+)$
    */
-  airInfo: string;
+  airInfo: NumberOrStar;
 
   /**
    * Barometric pressure in mbar/in.
-   * @pattern ^(\*|\d+\.\d+)$
    */
-  barometerPressure: string;
+  barometerPressure: NumberOrStar;
 
   /**
    * Description of the trend in the barometric pressure.
@@ -194,15 +200,13 @@ export default interface WeatherItemsType {
 
   /**
    * Wind speed on the Beaufort scale.
-   * @pattern ^(\*|\d+)$
    */
-  beaufortScale: string;
+  beaufortScale: NumberOrStar;
 
   /**
    * Comfort level in degrees.
-   * @pattern ^(\*|\d+\.\d+)$
    */
-  comfort: string;
+  comfort: NumberOrStar;
 
   /**
    * Segment of the day.
@@ -221,27 +225,24 @@ export default interface WeatherItemsType {
 
   /**
    * Dew point in Celsius/Fahrenheit.
-   * @pattern ^(\*|\d+\.\d+)$
    */
-  dewPoint: string;
+  dewPoint: NumberOrStar;
 
   /**
    * The Highest temperature for the day in Celsius/Fahrenheit.
-   * @pattern ^(\*|\d+\.\d+)$
    */
-  highTemperature: string;
+  highTemperature: NumberOrStar;
 
   /**
    * Humidity as a percentage (%)
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  humidity: string;
+  humidity: NumberOrStar;
 
   /**
    * Icon number.
    * @deprecated
    */
-  icon: string;
+  icon: number;
 
   /**
    * Link to icon resource file.
@@ -256,39 +257,33 @@ export default interface WeatherItemsType {
 
   /**
    * The lowest temperature for the day in Celsius/Fahrenheit.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  lowTemperature: string;
+  lowTemperature: NumberOrStar;
 
   /**
    * Precipitation over 1 hour in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  precipitation1H: string;
+  precipitation1H: NumberOrStar;
 
   /**
    * Precipitation over 3 hours in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  precipitation3H: string;
+  precipitation3H: NumberOrStar;
 
   /**
    * Precipitation over 6 hours in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  precipitation6H: string;
+  precipitation6H: NumberOrStar;
 
   /**
    * Precipitation over 12 hours in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  precipitation12H: string;
+  precipitation12H: NumberOrStar;
 
   /**
    * Precipitation over 24 hours in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  precipitation24H: string;
+  precipitation24H: NumberOrStar;
 
   /**
    * Precipitation description.
@@ -297,15 +292,13 @@ export default interface WeatherItemsType {
 
   /**
    * Precipitation probability percentage (%).
-   * @pattern ^(\*|\d+)$
    */
-  precipitationProbability: string;
+  precipitationProbability: NumberOrStar;
 
   /**
    * Amount of rain in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  rainFall: string;
+  rainFall: NumberOrStar;
 
   /**
    * Description of sky conditions.
@@ -314,27 +307,23 @@ export default interface WeatherItemsType {
 
   /**
    * Sky descriptor value.
-   * @pattern ^(\*|\d+)$
    */
-  skyInfo: string;
+  skyInfo: NumberOrStar;
 
   /**
    * Amount of snow on the ground in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  snowCover: string;
+  snowCover: NumberOrStar;
 
   /**
    * Amount of snow in cm/in.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  snowFall: string;
+  snowFall: NumberOrStar;
 
   /**
    * Temperature in Celsius/Fahrenheit.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  temperature: string;
+  temperature: NumberOrStar;
 
   /**
    * Temperature description.
@@ -348,15 +337,13 @@ export default interface WeatherItemsType {
 
   /**
    * UV Index value.
-   * @pattern ^(\*|\d+)$
    */
-  uvIndex: string;
+  uvIndex: NumberOrStar;
 
   /**
    * Visibility in km/mi.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  visibility: string;
+  visibility: NumberOrStar;
 
   /**
    * Description of the direction the wind is coming from.
@@ -370,13 +357,11 @@ export default interface WeatherItemsType {
 
   /**
    * Wind direction in degrees.
-   * @pattern ^(\*|\d+)$
    */
-  windDirection: string;
+  windDirection: NumberOrStar;
 
   /**
    * Wind speed in km/h or mph.
-   * @pattern ^(\*|\d+(\.\d+)?)$
    */
-  windSpeed: string;
+  windSpeed: NumberOrStar;
 }

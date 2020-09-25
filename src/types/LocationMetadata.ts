@@ -41,9 +41,12 @@ export default interface LocationMetadata {
 
   /**
    * Weekday number 1 through 7, where 1 indicates Sunday.
-   * @pattern ^\d*$
+   *
+   * @type integer
+   * @minimum 1
+   * @maximum 7
    */
-  dayOfWeek: string;
+  dayOfWeek: number;
 
   /**
    * Name of day.
@@ -51,19 +54,23 @@ export default interface LocationMetadata {
   weekDay: string;
 
   /**
-   * Date and time the forecast was issued.
-   * @format date-time
+   * Date and time the forecast was issued!!!
+   *
+   * @parser parseDate
    */
-  utcTime: string;
+  utcTime: Date;
 
   /**
    * Local time.
+   *
+   * @parser parseTime
    */
   localTime: string;
 
   /**
    * Local time format.
-   * @pattern ^(HH|MM|dd|yyyy)$
+   *
+   * @pattern ^(HH|MM|dd|yyyy)+$
    */
   localTimeFormat: string;
 

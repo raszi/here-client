@@ -1,0 +1,122 @@
+{
+  "name": "here-client",
+  "version": "0.1.0",
+  "description": "HERE client",
+  "main": "dist/index.js",
+  "files": [
+    "dist/*.js",
+    "dist/*.d.ts"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "build-validators": "typescript-json-validator --coerceTypes --validationKeywords parser --customKeywordFnName addKeyword --customKeywordPath '../ajv' src/types/**/*.ts",
+    "prepack": "tsc",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "test": "mocha",
+    "coverage": "nyc mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raszi/here-client.git"
+  },
+  "keywords": [
+    "here",
+    "weather",
+    "api",
+    "client"
+  ],
+  "author": "István Karaszi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raszi/here-client/issues"
+  },
+  "homepage": "https://github.com/raszi/here-client",
+  "dependencies": {
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/chai-datetime": "0.0.34",
+    "@types/debug": "^4.1.5",
+    "@types/mocha": "^8.0.3",
+    "@types/node": "^14.0.27",
+    "@types/node-fetch": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "chai": "^4.2.0",
+    "chai-datetime": "^1.7.0",
+    "eslint": "^7.5.0",
+    "eslint-plugin-mocha": "^7.0.1",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "fast-glob": "^3.2.4",
+    "mocha": "^8.0.1",
+    "node-fetch": "^2.6.1",
+    "nyc": "^15.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "@raszi/typescript-json-validator": "^2.5.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "sonarjs",
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:mocha/recommended",
+      "plugin:sonarjs/recommended"
+    ],
+    "rules": {
+      "mocha/no-mocha-arrows": 0,
+      "mocha/no-hooks-for-single-case": 0,
+      "mocha/no-setup-in-describe": 0
+    },
+    "ignorePatterns": [
+      "dist",
+      "src/types/**/*.validator.ts"
+    ],
+    "overrides": [
+      {
+        "files": "test/**/*.ts",
+        "rules": {
+          "sonarjs/no-duplicate-string": 0
+        }
+      }
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "mocha": {
+    "extension": [
+      "ts"
+    ],
+    "recursive": true,
+    "require": [
+      "ts-node/register"
+    ],
+    "slow": 250
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "coverage",
+      "dist",
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
+  }
+}
