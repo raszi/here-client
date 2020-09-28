@@ -71,7 +71,6 @@ export const addKeyword = (ajv: Ajv): void => {
         }
 
         if (!isRecord(parentData) && !isArray(parentData)) {
-          console.log(parentData);
           throw new Error('parentData is invalid');
         }
 
@@ -79,15 +78,13 @@ export const addKeyword = (ajv: Ajv): void => {
 
         if (isString(parentKey) && isRecord(parentData)) {
           parentData[parentKey] = value;
-          return true;
         } else if (isNumber(parentKey) && isArray(parentData)) {
           parentData[parentKey] = value;
-          return true;
         } else {
-          console.log('WTF?!');
-          console.log({ parentKey, parentData });
-          return false;
+          throw new Error(`Could not apply parser: ${parentKey}`);
         }
+
+        return true;
       };
     },
     metaSchema: {
