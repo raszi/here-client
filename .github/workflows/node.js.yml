@@ -25,6 +25,7 @@ jobs:
     - run: npm ci
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: npm run build-validators
     - run: npm run build
 
   lint:
@@ -45,6 +46,7 @@ jobs:
     - run: npm ci
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: npm run build-validators
     - run: npm run lint
 
   test:
@@ -65,4 +67,5 @@ jobs:
     - run: npm ci
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: npm run build-validators
     - run: npm run test
