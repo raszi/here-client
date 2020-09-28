@@ -10,6 +10,13 @@ export const isRecord = (value: unknown): value is Record<string, unknown> => {
 export type DeepMapTypes = Record<string, unknown> | unknown[] | null;
 type ObjectMapper = <T extends Record<string, unknown>>(inner: T) => T;
 
+const fromEntries = <T>(iterable: [string, T][]): Record<string, T> => {
+  return [...iterable].reduce((obj, [key, val]) => {
+    obj[key] = val;
+    return obj;
+  }, {} as Record<string, T>);
+};
+
 export const deepMapObject = <T extends DeepMapTypes>(value: T, mapper: ObjectMapper): T => {
   if (isArray(value)) {
     return value.map((v) => deepMapObject(v as DeepMapTypes, mapper)) as T;
@@ -18,7 +25,7 @@ export const deepMapObject = <T extends DeepMapTypes>(value: T, mapper: ObjectMa
   if (isRecord(value)) {
     const entries = Object.entries(mapper(value)).map(([k, v]) => [k, deepMapObject(v as DeepMapTypes, mapper)]);
 
-    return Object.fromEntries(entries) as T;
+    return fromEntries(entries as [string, unknown][]) as T;
   }
 
   return value;
@@ -33,7 +40,7 @@ const stringMapper = ({ predicate, transform }: DeepMapStringsParams): ObjectMap
   return <T extends Record<string, unknown>>(obj: T): T => {
     const mappedObj = Object.entries(obj).map(([k, v]) => (isString(v) && predicate(k) ? [k, transform(v)] : [k, v]));
 
-    return Object.fromEntries(mappedObj) as T;
+    return fromEntries(mappedObj as [string, unknown][]) as T;
   };
 };
 
