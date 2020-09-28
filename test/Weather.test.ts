@@ -1,20 +1,19 @@
-import { expect, readFixture } from './helper';
+import { expect, initMockServer, MockServer } from './helper';
 
-import Client, { RequestParams } from '../src/Client';
-import Weather from '../src/Weather';
-
-const mockClient: Client = {
-  fetch: async (_path: string, params: RequestParams) => {
-    const { product } = params;
-    return readFixture(`${product}.json`);
-  },
-
-  addCredentials: (url: string): string => url
-};
-
-const weather = new Weather(mockClient);
+import HereClient, { Weather } from '../src';
 
 describe('Weather', () => {
+  let mockServer: MockServer;
+  let weather: Weather;
+
+  before(() => {
+    mockServer = initMockServer();
+    const client = new HereClient({ baseURL: mockServer.baseURL, apiKey: 'foobar' });
+    weather = client.weather;
+  });
+
+  after(() => mockServer.stop());
+
   describe('#observation()', () => {
     it('should return with the observation', async () => {
       const response = await weather.observation({ name: 'Budapest' });
