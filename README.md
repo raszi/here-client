@@ -29,7 +29,7 @@ To retrieve a Weather client you need to call `client.weather`:
 ### JavaScript ###
 
 ```javascript
-const HereClient = require('here-client');
+const HereClient = require('here-client').default;
 
 const hereClient = new HereClient({ apiKey: 'foobar' });
 hereClient.weather.observation({ name: 'Budapest' });
