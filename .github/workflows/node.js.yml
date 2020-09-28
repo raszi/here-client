@@ -23,6 +23,8 @@ jobs:
         registry-url: https://npm.pkg.github.com/raszi
         scope: '@raszi'
     - run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm run build
 
   lint:
@@ -41,6 +43,8 @@ jobs:
         registry-url: https://npm.pkg.github.com/raszi
         scope: '@raszi'
     - run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm run lint
 
   test:
@@ -59,4 +63,6 @@ jobs:
         registry-url: https://npm.pkg.github.com/raszi
         scope: '@raszi'
     - run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm run test
