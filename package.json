@@ -4,8 +4,8 @@
   "description": "HERE client",
   "main": "dist/index.js",
   "files": [
-    "dist/*.js",
-    "dist/*.d.ts"
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
   ],
   "scripts": {
     "clean": "rimraf dist",
