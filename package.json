@@ -92,6 +92,12 @@
         }
       },
       {
+        "files": "src/fetch.ts",
+        "rules": {
+          "@typescript-eslint/no-var-requires": 0
+        }
+      },
+      {
         "files": "test/helper.ts",
         "rules": {
           "@typescript-eslint/no-var-requires": 0

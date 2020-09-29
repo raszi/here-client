@@ -1,5 +1,4 @@
-import fetch from 'node-fetch';
-
-const fetchFn = global.window && global.window.fetch ? ((global.window.fetch as unknown) as typeof fetch) : fetch;
+const fetchFn =
+  global.window && global.window.fetch ? global.window.fetch : (require('node-fetch') as typeof global.window.fetch);
 
 export default fetchFn;
