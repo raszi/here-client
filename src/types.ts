@@ -12,7 +12,10 @@ import Observations from './types/Observations';
 import WeatherItemsType from './types/WeatherItemsType';
 import WeatherReportType from './types/WeatherReportType';
 
+import { ForecastParams, ObservationParams } from './Weather';
+
 export {
+  // HERE.com types
   DailyForecastType,
   DailyForecasts,
   ForecastLocationType,
@@ -25,5 +28,8 @@ export {
   ObservationType,
   Observations,
   WeatherItemsType,
-  WeatherReportType
+  WeatherReportType,
+  // internal types
+  ForecastParams,
+  ObservationParams
 };

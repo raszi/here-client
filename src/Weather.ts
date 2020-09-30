@@ -21,12 +21,12 @@ type CityParams = {
 
 type LocationParams = RequestParams & (GCSParams | CityParams);
 
-type ForecastParams = LocationParams & {
+export type ForecastParams = LocationParams & {
   language?: string;
   metric?: boolean;
 };
 
-type ObservationParams = ForecastParams & {
+export type ObservationParams = ForecastParams & {
   oneobservation?: boolean;
 };
 
