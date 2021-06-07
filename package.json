@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/raszi/here-client",
   "dependencies": {
-    "ajv": "^6.12.5",
+    "ajv": "^8.6.0",
     "debug": "^4.2.0"
   },
   "devDependencies": {
